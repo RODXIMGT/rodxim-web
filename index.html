@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inmobiliaria Horizonte | Terrenos y Oportunidades</title>
+  <meta name="description" content="Página web inmobiliaria para promoción de terrenos, visión empresarial, objetivos y galería de propiedades." />
+  <style>
+    :root{
+      --bg:#f7f7f5;
+      --white:#ffffff;
+      --dark:#16302b;
+      --dark-2:#25453f;
+      --gold:#c5a46d;
+      --gold-2:#e6d2ad;
+      --text:#34423f;
+      --muted:#6e7b78;
+      --line:#dde5e2;
+      --shadow:0 14px 40px rgba(22,48,43,.10);
+      --radius:22px;
+      --radius-sm:14px;
+    }
+
+    *{box-sizing:border-box;scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+
+    .container{
+      width:min(1180px, 92%);
+      margin:0 auto;
+    }
+
+    .topbar{
+      background:var(--dark);
+      color:#fff;
+      font-size:14px;
+    }
+
+    .topbar .container{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      padding:10px 0;
+      flex-wrap:wrap;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(255,255,255,.94);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:18px 0;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:700;
+      color:var(--dark);
+    }
+
+    .logo-badge{
+      width:44px;
+      height:44px;
+      display:grid;
+      place-items:center;
+      border-radius:14px;
+      background:linear-gradient(135deg, var(--dark), var(--dark-2));
+      color:#fff;
+      box-shadow:var(--shadow);
+    }
+
+    .nav-links{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .nav-links a{
+      color:var(--text);
+      font-weight:600;
+      font-size:15px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:14px 18px;
+      border-radius:14px;
+      border:none;
+      cursor:pointer;
+      font-weight:700;
+      transition:.25s ease;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg, var(--gold), #b98b45);
+      color:#fff;
+      box-shadow:var(--shadow);
+    }
+
+    .btn-primary:hover,.btn-secondary:hover{transform:translateY(-2px)}
+
+    .btn-secondary{
+      background:var(--white);
+      color:var(--dark);
+      border:1px solid var(--line);
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      padding:76px 0 54px;
+      background:
+        radial-gradient(circle at top right, rgba(197,164,109,.18), transparent 32%),
+        linear-gradient(180deg, #fbfaf7, #f4f5f3);
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:34px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(197,164,109,.16);
+      color:#8d6b34;
+      font-size:13px;
+      font-weight:700;
+      margin-bottom:16px;
+    }
+
+    h1,h2,h3{margin:0 0 14px;color:var(--dark)}
+
+    h1{
+      font-size:clamp(34px, 6vw, 60px);
+      line-height:1.05;
+      letter-spacing:-1px;
+    }
+
+    .hero p{
+      font-size:18px;
+      color:var(--muted);
+      max-width:620px;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:26px;
+    }
+
+    .hero-card{
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:30px;
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+
+    .property-preview{
+      display:grid;
+      gap:14px;
+    }
+
+    .property-preview .image{
+      border-radius:22px;
+      min-height:380px;
+      background:
+        linear-gradient(rgba(22,48,43,.12), rgba(22,48,43,.35)),
+        url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80') center/cover;
+    }
+
+    .quick-stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+    }
+
+    .quick-stats div{
+      background:#f8faf9;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px;
+      text-align:center;
+    }
+
+    .quick-stats strong{
+      display:block;
+      color:var(--dark);
+      font-size:20px;
+    }
+
+    section{
+      padding:78px 0;
+    }
+
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      align-items:end;
+      margin-bottom:28px;
+      flex-wrap:wrap;
+    }
+
+    .section-head p{max-width:700px;color:var(--muted);margin:0}
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+
+    .card{
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .icon{
+      width:52px;
+      height:52px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      color:#fff;
+      background:linear-gradient(135deg, var(--dark), var(--dark-2));
+      margin-bottom:16px;
+      font-size:22px;
+    }
+
+    .vision-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:22px;
+    }
+
+    .goals{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+    }
+
+    .goal-item{
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px;
+      box-shadow:var(--shadow);
+    }
+
+    .goal-item strong{
+      display:block;
+      color:var(--dark);
+      margin-bottom:8px;
+    }
+
+    .featured-band{
+      background:linear-gradient(135deg, var(--dark), var(--dark-2));
+      color:#fff;
+      border-radius:32px;
+      padding:28px;
+      box-shadow:var(--shadow);
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .featured-band p{color:#d7e3df}
+
+    .features-list{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+    }
+
+    .feature-mini{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      padding:14px;
+    }
+
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+
+    .gallery-card{
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+
+    .gallery-image{
+      height:240px;
+      background-size:cover;
+      background-position:center;
+    }
+
+    .gallery-body{
+      padding:18px;
+    }
+
+    .tag{
+      display:inline-block;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(22,48,43,.08);
+      color:var(--dark);
+      font-size:12px;
+      font-weight:700;
+      margin-bottom:10px;
+    }
+
+    .price{
+      color:#8d6b34;
+      font-weight:800;
+      font-size:22px;
+      margin:10px 0;
+    }
+
+    .meta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .sales-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+
+    .sales-box{
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px;
+      box-shadow:var(--shadow);
+    }
+
+    .timeline{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
+
+    .timeline-step{
+      position:relative;
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:20px;
+      box-shadow:var(--shadow);
+    }
+
+    .timeline-step span{
+      display:inline-grid;
+      place-items:center;
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      background:var(--gold);
+      color:#fff;
+      font-weight:800;
+      margin-bottom:10px;
+    }
+
+    .contact-wrap{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:24px;
+    }
+
+    .contact-box,.form-box{
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:26px;
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .contact-points{
+      display:grid;
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .contact-point{
+      padding:14px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:#fbfcfb;
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+    }
+
+    input,select,textarea{
+      width:100%;
+      padding:14px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#fff;
+      font:inherit;
+      color:var(--text);
+      outline:none;
+    }
+
+    textarea{min-height:130px;resize:vertical}
+    .full{grid-column:1/-1}
+
+    .cta{
+      padding:0 0 78px;
+    }
+
+    .cta-box{
+      background:linear-gradient(135deg, #f5ead9, #fff8ef);
+      border:1px solid #ead8b7;
+      border-radius:32px;
+      padding:34px;
+      box-shadow:var(--shadow);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    footer{
+      background:var(--dark);
+      color:#dfe8e5;
+      padding:26px 0;
+    }
+
+    .footer-grid{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .small{font-size:14px;color:#c8d7d3}
+
+    @media (max-width: 1000px){
+      .hero-grid,.featured-band,.contact-wrap,.cards,.gallery-grid,.sales-grid,.timeline,.vision-grid,.goals{
+        grid-template-columns:1fr 1fr;
+      }
+      .quick-stats{grid-template-columns:repeat(3,1fr)}
+    }
+
+    @media (max-width: 760px){
+      .nav{flex-direction:column;align-items:flex-start}
+      .nav-links{gap:12px}
+      .hero-grid,.cards,.gallery-grid,.sales-grid,.timeline,.vision-grid,.goals,.contact-wrap,.featured-band,.features-list,.form-grid{
+        grid-template-columns:1fr;
+      }
+      .quick-stats{grid-template-columns:1fr}
+      h1{font-size:40px}
+      section{padding:58px 0}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container">
+      <div>📍 Especialistas en promoción y venta de terrenos</div>
+      <div>📞 +502 5555-5555 &nbsp;|&nbsp; ✉ ventas@inmobiliariahorizonte.com</div>
+    </div>
+  </div>
+
+  <header>
+    <div class="container nav">
+      <a href="#inicio" class="logo">
+        <div class="logo-badge">IH</div>
+        <div>
+          <div>Inmobiliaria Horizonte</div>
+          <small style="color:var(--muted);font-weight:600;">Terrenos con visión de futuro</small>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#nosotros">Nosotros</a>
+        <a href="#mision-vision">Misión y Visión</a>
+        <a href="#objetivos">Objetivos</a>
+        <a href="#galeria">Galería</a>
+        <a href="#contacto">Contacto</a>
+        <a href="#contacto" class="btn btn-primary">Solicitar información</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="inicio">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Proyección inmobiliaria moderna</span>
+        <h1>Terrenos con alto potencial para inversión, vivienda y desarrollo.</h1>
+        <p>
+          Impulsamos la comercialización de terrenos con una presentación profesional, atención estratégica y una experiencia digital diseñada para generar más confianza, más consultas y más cierres de venta.
+        </p>
+        <div class="hero-actions">
+          <a href="#galeria" class="btn btn-primary">Ver terrenos destacados</a>
+          <a href="#contacto" class="btn btn-secondary">Agendar asesoría</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="property-preview">
+          <div class="image"></div>
+          <div class="quick-stats">
+            <div>
+              <strong>+50</strong>
+              Terrenos anunciados
+            </div>
+            <div>
+              <strong>+120</strong>
+              Clientes atendidos
+            </div>
+            <div>
+              <strong>98%</strong>
+              Respuesta rápida
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="nosotros">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Quiénes somos</span>
+          <h2>Una inmobiliaria enfocada en confianza, visibilidad y crecimiento comercial.</h2>
+        </div>
+        <p>
+          Nuestra empresa promueve terrenos urbanos, residenciales, campestres y de inversión mediante una estrategia de presentación clara, acompañamiento comercial y herramientas digitales que aumentan la intención de compra.
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="icon">🏡</div>
+          <h3>Anuncios profesionales</h3>
+          <p>Presentamos cada terreno con un enfoque visual atractivo, información ordenada y elementos que transmiten valor al cliente desde el primer vistazo.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">📈</div>
+          <h3>Impulso comercial</h3>
+          <p>Diseñamos experiencias digitales pensadas para convertir visitantes en consultas reales, aumentando la captación de prospectos y la tasa de seguimiento.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🤝</div>
+          <h3>Atención cercana</h3>
+          <p>Brindamos información ágil, personalizada y transparente para que cada cliente se sienta seguro antes de tomar una decisión de inversión.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="mision-vision">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Fundamento empresarial</span>
+          <h2>Misión y visión de la empresa</h2>
+        </div>
+        <p>
+          Una identidad sólida inspira confianza. Estas bases ayudan a comunicar seriedad, dirección comercial y compromiso con el crecimiento de la marca.
+        </p>
+      </div>
+
+      <div class="vision-grid">
+        <article class="card">
+          <div class="icon">🎯</div>
+          <h3>Misión</h3>
+          <p>
+            Comercializar terrenos de manera profesional, transparente y estratégica, ofreciendo a cada cliente información clara, atención personalizada y oportunidades inmobiliarias con verdadero potencial de desarrollo e inversión.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🌎</div>
+          <h3>Visión</h3>
+          <p>
+            Ser una inmobiliaria reconocida por su innovación digital, excelencia comercial y capacidad de conectar a más personas con terrenos de alto valor, consolidando una marca confiable y competitiva en el mercado.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="objetivos">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Dirección estratégica</span>
+          <h2>Objetivos de la empresa</h2>
+        </div>
+        <p>
+          Estos objetivos están pensados no solo para presentar la empresa, sino para reforzar su imagen comercial y orientar el crecimiento en ventas.
+        </p>
+      </div>
+
+      <div class="goals">
+        <div class="goal-item">
+          <strong>1. Incrementar la captación de clientes</strong>
+          Utilizar una presencia digital atractiva para aumentar consultas, mensajes y solicitudes de información sobre los terrenos publicados.
+        </div>
+        <div class="goal-item">
+          <strong>2. Fortalecer la confianza de la marca</strong>
+          Comunicar profesionalismo, orden y transparencia en cada propiedad anunciada y en cada interacción con el cliente.
+        </div>
+        <div class="goal-item">
+          <strong>3. Agilizar el proceso comercial</strong>
+          Facilitar que el visitante encuentre información relevante, compare oportunidades y se comunique de forma rápida con un asesor.
+        </div>
+        <div class="goal-item">
+          <strong>4. Impulsar ventas sostenibles</strong>
+          Promover terrenos con alto potencial y acompañar cada oportunidad con seguimiento comercial oportuno y enfocado en cierre.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="featured-band">
+        <div>
+          <span class="eyebrow" style="background:rgba(255,255,255,.12);color:#f9e8ca;">Valor agregado</span>
+          <h2 style="color:#fff;">Elementos novedosos para aumentar consultas y ventas</h2>
+          <p>
+            Además de mostrar terrenos, una inmobiliaria moderna debe generar confianza inmediata, destacar oportunidades y facilitar la decisión del cliente con herramientas claras de persuasión comercial.
+          </p>
+        </div>
+        <div class="features-list">
+          <div class="feature-mini">✅ Botón de asesor inmediato por WhatsApp</div>
+          <div class="feature-mini">✅ Sección de terrenos destacados</div>
+          <div class="feature-mini">✅ Etiquetas de oportunidad e inversión</div>
+          <div class="feature-mini">✅ Formulario de precalificación de interés</div>
+          <div class="feature-mini">✅ Llamados a la acción visibles en toda la página</div>
+          <div class="feature-mini">✅ Diseño preparado para crecer con más propiedades</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="galeria">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Galería de terrenos</span>
+          <h2>Espacios listos para mostrar tus propiedades</h2>
+        </div>
+        <p>
+          Estas tarjetas están pensadas para que luego puedas cambiar fotos, precios, ubicaciones y descripciones reales de tus terrenos disponibles.
+        </p>
+      </div>
+
+      <div class="gallery-grid">
+        <article class="gallery-card">
+          <div class="gallery-image" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80');"></div>
+          <div class="gallery-body">
+            <span class="tag">Terreno destacado</span>
+            <h3>Terreno residencial premium</h3>
+            <div class="price">Q 325,000</div>
+            <p>Ideal para vivienda familiar en zona de crecimiento, con acceso vehicular y excelente proyección de plusvalía.</p>
+            <div class="meta">
+              <span>📍 Ubicación estratégica</span>
+              <span>📐 450 m²</span>
+              <span>🚗 Fácil acceso</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="gallery-card">
+          <div class="gallery-image" style="background-image:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80');"></div>
+          <div class="gallery-body">
+            <span class="tag">Oportunidad de inversión</span>
+            <h3>Terreno campestre con vistas</h3>
+            <div class="price">Q 198,000</div>
+            <p>Perfecto para proyecto vacacional, desarrollo de cabañas o inversión patrimonial en una zona de alta tranquilidad.</p>
+            <div class="meta">
+              <span>🌄 Vista panorámica</span>
+              <span>📐 600 m²</span>
+              <span>🌿 Entorno natural</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="gallery-card">
+          <div class="gallery-image" style="background-image:url('https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1200&q=80');"></div>
+          <div class="gallery-body">
+            <span class="tag">Ideal para desarrollo</span>
+            <h3>Terreno amplio para proyecto</h3>
+            <div class="price">Q 580,000</div>
+            <p>Excelente opción para desarrollo comercial, residencial o bodegas según la ubicación y dimensión disponible.</p>
+            <div class="meta">
+              <span>🏗 Alto potencial</span>
+              <span>📐 1,250 m²</span>
+              <span>📈 Plusvalía</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Impulso a ventas</span>
+          <h2>Ideas comerciales que ayudan a vender más</h2>
+        </div>
+        <p>
+          Estas áreas refuerzan la credibilidad, mejoran la experiencia del visitante y aumentan la posibilidad de que una consulta se convierta en cliente real.
+        </p>
+      </div>
+
+      <div class="sales-grid">
+        <div class="sales-box">
+          <h3>Comparador visual</h3>
+          <p>Agrega después una sección para comparar tamaño, precio y ubicación entre terrenos destacados.</p>
+        </div>
+        <div class="sales-box">
+          <h3>Urgencia comercial</h3>
+          <p>Usa distintivos como “últimas unidades”, “alta demanda” o “precio especial por tiempo limitado”.</p>
+        </div>
+        <div class="sales-box">
+          <h3>Prueba social</h3>
+          <p>Integra testimonios de clientes o casos de inversión exitosa para elevar la confianza de nuevos visitantes.</p>
+        </div>
+        <div class="sales-box">
+          <h3>Captación de leads</h3>
+          <p>Ofrece una asesoría gratuita o una guía de inversión a cambio del nombre, teléfono y correo del prospecto.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Proceso comercial</span>
+          <h2>Cómo guiamos al cliente hasta la compra</h2>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-step">
+          <span>1</span>
+          <h3>Consulta</h3>
+          <p>El cliente se interesa en un terreno y solicita información desde la web.</p>
+        </div>
+        <div class="timeline-step">
+          <span>2</span>
+          <h3>Asesoría</h3>
+          <p>Brindamos detalle de ubicación, metraje, precio y potencial de inversión.</p>
+        </div>
+        <div class="timeline-step">
+          <span>3</span>
+          <h3>Visita</h3>
+          <p>Coordinamos visita o presentación virtual para reforzar el interés de compra.</p>
+        </div>
+        <div class="timeline-step">
+          <span>4</span>
+          <h3>Cierre</h3>
+          <p>Se acompaña al cliente en el proceso comercial hasta concretar la negociación.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Conecta con tus clientes</span>
+          <h2>Formulario de contacto y áreas listas para captar prospectos</h2>
+        </div>
+        <p>
+          Aunque esta página es principalmente informativa, este bloque ayuda a convertir visitas en oportunidades reales de venta.
+        </p>
+      </div>
+
+      <div class="contact-wrap">
+        <div class="contact-box">
+          <h3>Hablemos de tu próxima inversión</h3>
+          <p>
+            Atendemos clientes interesados en terrenos residenciales, campestres, comerciales o para proyectos de inversión. Nuestro objetivo es dar respuesta rápida y profesional.
+          </p>
+
+          <div class="contact-points">
+            <div class="contact-point"><strong>Oficina comercial</strong><br>Ciudad de Guatemala, Guatemala</div>
+            <div class="contact-point"><strong>Teléfono</strong><br>+502 5555-5555</div>
+            <div class="contact-point"><strong>Correo</strong><br>ventas@inmobiliariahorizonte.com</div>
+            <div class="contact-point"><strong>Horario</strong><br>Lunes a viernes de 8:00 a 18:00</div>
+          </div>
+        </div>
+
+        <div class="form-box">
+          <h3>Solicitar información</h3>
+          <form class="form-grid">
+            <div>
+              <input type="text" placeholder="Nombre completo" />
+            </div>
+            <div>
+              <input type="text" placeholder="Teléfono" />
+            </div>
+            <div>
+              <input type="email" placeholder="Correo electrónico" />
+            </div>
+            <div>
+              <select>
+                <option>Tipo de interés</option>
+                <option>Terreno residencial</option>
+                <option>Terreno campestre</option>
+                <option>Terreno comercial</option>
+                <option>Inversión</option>
+              </select>
+            </div>
+            <div class="full">
+              <textarea placeholder="Cuéntanos qué tipo de terreno buscas o qué información deseas recibir"></textarea>
+            </div>
+            <div class="full">
+              <button type="submit" class="btn btn-primary" style="width:100%;">Enviar solicitud</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <div class="cta-box">
+        <div>
+          <h2>Haz que tu inmobiliaria proyecte más confianza y venda mejor.</h2>
+          <p style="margin:8px 0 0;color:var(--muted);">Esta base puede crecer luego con buscador, filtros, WhatsApp, mapa interactivo, testimonios y conexión a CRM.</p>
+        </div>
+        <a href="#contacto" class="btn btn-primary">Quiero más información</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <strong>Inmobiliaria Horizonte</strong><br>
+        <span class="small">Presentación digital para promoción de terrenos y captación de clientes.</span>
+      </div>
+      <div class="small">© 2026 Todos los derechos reservados.</div>
+    </div>
+  </footer>
+</body>
+</html>
